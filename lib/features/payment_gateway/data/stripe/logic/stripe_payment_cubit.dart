@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:payment_gateway/core/errors/failure.dart';
-import 'package:payment_gateway/features/payment_gateway/stripe/data/repos/check_out_repo.dart';
 
 import '../data/model/payment_intent_input_model.dart';
+import '../data/repos/check_out_repo.dart';
 
 part 'stripe_payment_state.dart';
 

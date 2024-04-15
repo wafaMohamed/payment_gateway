@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:payment_gateway/core/errors/failure.dart';
-import 'package:payment_gateway/features/payment_gateway/stripe/data/model/payment_intent_input_model.dart';
-import 'package:payment_gateway/features/payment_gateway/stripe/data/repos/check_out_repo.dart';
-import 'package:payment_gateway/features/payment_gateway/stripe/data/service/strip_service.dart';
+
+import '../model/payment_intent_input_model.dart';
+import '../service/strip_service.dart';
+import 'check_out_repo.dart';
 
 class CheckOutRepoImplementation implements CheckOutRepo {
   final StripeService stripeService = StripeService();
