@@ -22,38 +22,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
- // step1/ (paymentIntentObject) Create payment intent require ( amount and currency)
-// step2/ initialize - init payment sheet (paymentIntentClientSecret)
-// Future<void> initPaymentSheet() async {
-//   try {
-//     // 2. initialize the payment sheet
-//     await Stripe.instance.initPaymentSheet(
-//       paymentSheetParameters: SetupPaymentSheetParameters(
-//         // Main params
-//         merchantDisplayName: 'Flutter Stripe Store Demo',
-//         paymentIntentClientSecret: data['paymentIntent'],
-//         // Extra options
-//         applePay: const PaymentSheetApplePay(
-//           merchantCountryCode: 'US',
-//         ),
-//         googlePay: const PaymentSheetGooglePay(
-//           merchantCountryCode: 'US',
-//           testEnv: true,
-//         ),
-//         style: ThemeMode.dark,
-//       ),
-//     );
-//     setState(() {
-//       _ready = true;
-//     });
-//   } catch (e) {
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(content: Text('Error: $e')),
-//     );
-//     rethrow;
-//   }
-// }
-
-// step3/ present payment sheet (Checkout)
-
-

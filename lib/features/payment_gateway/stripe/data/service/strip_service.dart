@@ -21,11 +21,59 @@ class StripeService {
     return paymentIntent;
   }
 
-  // payment intent sheet
+  //payment intent sheet
   Future initPaymentSheet({required String paymentIntentClientSecret}) async {
     Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
             paymentIntentClientSecret: paymentIntentClientSecret,
             merchantDisplayName: "wafa mohamed"));
   }
+
+  // present payment sheet
+  Future displayPaymentSheet() async {
+    Stripe.instance.presentPaymentSheet();
+  }
+
+  // make payment to display all 3 steps
+  Future makePayment(
+      {required PaymentInetInputModel paymentInetInputModel}) async {
+    CreatePaymentIntentModel paymentIntent =
+        await createPaymentIntentModel(paymentInetInputModel);
+    await initPaymentSheet(
+        paymentIntentClientSecret: paymentIntent.clientSecret!);
+    await displayPaymentSheet();
+  }
 }
+// step1/ (paymentIntentObject) Create payment intent require ( amount and currency)
+// step2/ initialize - init payment sheet (paymentIntentClientSecret)
+// Future<void> initPaymentSheet() async {
+//   try {
+//     // 2. initialize the payment sheet
+//     await Stripe.instance.initPaymentSheet(
+//       paymentSheetParameters: SetupPaymentSheetParameters(
+//         // Main params
+//         merchantDisplayName: 'Flutter Stripe Store Demo',
+//         paymentIntentClientSecret: data['paymentIntent'],
+//         // Extra options
+//         applePay: const PaymentSheetApplePay(
+//           merchantCountryCode: 'US',
+//         ),
+//         googlePay: const PaymentSheetGooglePay(
+//           merchantCountryCode: 'US',
+//           testEnv: true,
+//         ),
+//         style: ThemeMode.dark,
+//       ),
+//     );
+//     setState(() {
+//       _ready = true;
+//     });
+//   } catch (e) {
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(content: Text('Error: $e')),
+//     );
+//     rethrow;
+//   }
+// }
+
+// step3/ present payment sheet (Checkout)
