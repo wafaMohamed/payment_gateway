@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 // api service
 class ApiService {
+  static const String baseUrl = "https://api.stripe.com/v1/payment_intents";
   final Dio dio = Dio();
 
   // http request [ post - get - put - delete ]

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'core/utils/keys.dart';
+import 'core/utils/strip_keys.dart';
 
 void main() {
   Stripe.publishableKey = StripeKeys.stripePublishableKey;
