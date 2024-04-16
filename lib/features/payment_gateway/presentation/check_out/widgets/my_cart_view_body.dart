@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:payment_gateway/features/payment_gateway/presentation/check_out/widgets/total_price.dart';
 
 import 'cart_info_item.dart';
+import 'custom_button.dart';
 
 class MyCartViewBody extends StatelessWidget {
   const MyCartViewBody({super.key});
@@ -16,7 +17,7 @@ class MyCartViewBody extends StatelessWidget {
             const SizedBox(
               height: 18,
             ),
-            Image.asset('assets/images/basket_image.png'),
+            Expanded(child: Image.asset('assets/images/basket_image.png')),
             const SizedBox(
               height: 18,
             ),
@@ -36,9 +37,22 @@ class MyCartViewBody extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             const TotalPrice(
               title: 'Total Price',
               value: '\$0',
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomButton(
+              onTap: () {},
+              title: 'Complete Payment',
+            ),
+            const SizedBox(
+              height: 15,
             ),
           ],
         ),

@@ -28,8 +28,14 @@ abstract class Styles {
       fontSize: 20,
       fontWeight: FontWeight.w400,
       height: 0);
+  static TextStyle textStyle22 = GoogleFonts.inter(
+      color: ColorsApp.black.withOpacity(0.800000011920929),
+      fontSize: 22,
+      fontWeight: FontWeight.w500,
+      height: 0);
 }
 
 class ColorsApp {
   static Color black = Colors.black;
+  static Color green = Color(0xff34a853);
 }
