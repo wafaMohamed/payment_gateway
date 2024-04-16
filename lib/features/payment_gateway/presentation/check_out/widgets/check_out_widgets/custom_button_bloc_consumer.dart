@@ -20,60 +20,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       builder: (BuildContext context, StripePaymentState state) {
         return CustomButton(
           onTap: () {
-            //item list model
-            List<OrderItemModel> orderItemModel = [
-              OrderItemModel(
-                currency: "USD",
-                name: "Apple",
-                price: "4",
-                quantity: 10,
-              ),
-              OrderItemModel(
-                currency: "USD",
-                name: "Apple",
-                price: "5",
-                quantity: 12,
-              ),
-            ];
-            var itemList = ItemListModel(items: orderItemModel);
-            // amount model
-            AmountModel amountModel = AmountModel(
-              currency: 'USD',
-              details: Details(
-                shipping: "0",
-                shippingDiscount: 0,
-                subtotal: "100",
-              ),
-              total: "100",
-            );
-            // paypal package
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => PaypalCheckoutView(
-                sandboxMode: true,
-                clientId: "YOUR CLIENT ID",
-                secretKey: "YOUR SECRET KEY",
-                transactions: [
-                  {
-                    "amount": amountModel.toJson(),
-                    "description": "The payment transaction description.",
-                    "item_list": itemList.toJson()
-                  }
-                ],
-                note: "Contact us for any questions on your order.",
-                onSuccess: (Map params) async {
-                  log("onSuccess: $params");
-                  Navigator.pop(context);
-                },
-                onError: (error) {
-                  log("onError: $error");
-                  Navigator.pop(context);
-                },
-                onCancel: () {
-                  print('cancelled:');
-                  Navigator.pop(context);
-                },
-              ),
-            ));
+            executePayPalPayment(context);
 
             // PaymentInetInputModel paymentInetInputModel = PaymentInetInputModel(
             //   amount: '1000',
@@ -101,5 +48,68 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         // }
       },
     );
+  }
+
+  void executePayPalPayment(BuildContext context) {
+    var transactionData = getTransactionData();
+    // paypal package
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "YOUR CLIENT ID",
+        secretKey: "YOUR SECRET KEY",
+        transactions: [
+          {
+            "amount": transactionData.amountModel.toJson(),
+            "description": "The payment transaction description.",
+            "item_list": transactionData.itemList.toJson(),
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          log("onSuccess: $params");
+          Navigator.pop(context);
+        },
+        onError: (error) {
+          log("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          print('cancelled:');
+          Navigator.pop(context);
+        },
+      ),
+    ));
+  }
+
+  // records
+  ({AmountModel amountModel, ItemListModel itemList}) getTransactionData() {
+    //item list model
+    List<OrderItemModel> orderItemModel = [
+      OrderItemModel(
+        currency: "USD",
+        name: "Apple",
+        price: "4",
+        quantity: 10,
+      ),
+      OrderItemModel(
+        currency: "USD",
+        name: "Apple",
+        price: "5",
+        quantity: 12,
+      ),
+    ];
+    ItemListModel itemList = ItemListModel(items: orderItemModel);
+    // amount model
+    AmountModel amountModel = AmountModel(
+      currency: 'USD',
+      details: Details(
+        shipping: "0",
+        shippingDiscount: 0,
+        subtotal: "100",
+      ),
+      total: "100",
+    );
+    return (amountModel: amountModel, itemList: itemList);
   }
 }
