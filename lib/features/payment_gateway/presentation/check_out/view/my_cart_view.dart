@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:payment_gateway/core/utils/styles.dart';
 
+import '../widgets/my_cart_view_body.dart';
+
 class MyCartView extends StatelessWidget {
   const MyCartView({super.key});
 
@@ -9,7 +11,11 @@ class MyCartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Center(child: SvgPicture.asset("assets/images/arrow.svg")),
+        leading: Center(
+            child: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: SvgPicture.asset("assets/images/arrow.svg"),
+        )),
         centerTitle: true,
         title: Text(
           "My Cart",
@@ -17,6 +23,7 @@ class MyCartView extends StatelessWidget {
           style: Styles.textStyle25,
         ),
       ),
+      body: const MyCartViewBody(),
     );
   }
 }
