@@ -3,19 +3,21 @@ class AmountModel {
   String? currency;
   Details? details;
 
-  AmountModel({this.total, this.currency, this.details});
+  AmountModel(
+      {required this.total, required this.currency, required this.details});
 
   AmountModel.fromJson(Map<String, dynamic> json) {
     total = json["total"];
     currency = json["currency"];
-    details = json["details"] == null ? null : Details.fromJson(json["details"]);
+    details =
+        json["details"] == null ? null : Details.fromJson(json["details"]);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["total"] = total;
     _data["currency"] = currency;
-    if(details != null) {
+    if (details != null) {
       _data["details"] = details?.toJson();
     }
     return _data;
