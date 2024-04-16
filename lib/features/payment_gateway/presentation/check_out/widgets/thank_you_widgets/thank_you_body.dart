@@ -1,53 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:payment_gateway/features/payment_gateway/presentation/check_out/widgets/thank_you_widgets/custom_check_icon.dart';
+import 'package:payment_gateway/features/payment_gateway/presentation/check_out/widgets/thank_you_widgets/thank_you_card.dart';
 
-import '../../../../../../core/utils/styles.dart';
+import 'custom_dash_line.dart';
 
 class ThankYouBody extends StatelessWidget {
   const ThankYouBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(clipBehavior: Clip.none, children: [
-      Padding(
-        padding: const EdgeInsets.all(20),
-        child: Container(
-          decoration: ShapeDecoration(
-            color: ColorsApp.grey,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-          ),
-        ),
-      ),
-      Positioned(
-          left: -20,
-          bottom: MediaQuery.of(context).size.height * .2,
-          child: const CircleAvatar(
-            backgroundColor: Colors.transparent,
-          )),
-      Positioned(
-          right: -20,
-          bottom: MediaQuery.of(context).size.height * .2,
-          child: const CircleAvatar(
-            backgroundColor: Colors.transparent,
-          )),
-      Positioned(
-          right: 0,
-          left: 0,
-          top: -50,
-          child: CircleAvatar(
-            backgroundColor: ColorsApp.grey,
-            radius: 50,
-            child: CircleAvatar(
-              radius: 40,
-              backgroundColor: ColorsApp.green,
-              child: const Icon(
-                Icons.check,
-                color: Colors.white,
-                size: 50,
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 25),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            const ThankYouCard(),
+
+            Positioned(
+              left: -2,
+              bottom: MediaQuery.of(context).size.height * .2,
+              child: const CircleAvatar(
+                backgroundColor: Colors.white,
               ),
             ),
-          )),
-    ]);
+            Positioned(
+              right: -2,
+              bottom: MediaQuery.of(context).size.height * .2,
+              child: const CircleAvatar(
+                backgroundColor: Colors.white,
+              ),
+            ),
+            // dash line
+            Positioned(
+              bottom: MediaQuery.sizeOf(context).height * .2 + 20,
+              left: 35 + 8,
+              right: 35 + 8,
+              child: const CustomDashedLine(),
+            ),
+            const Positioned(
+                right: 0, left: 0, top: -20, child: CustomCheckIcon()),
+          ],
+        ),
+      ),
+    );
   }
 }
