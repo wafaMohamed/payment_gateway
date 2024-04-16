@@ -15,6 +15,7 @@ class StripeService {
     Response<dynamic> response = await apiService.post(
         // token == secret key
         token: StripeKeys.secretKey,
+        contentType: Headers.formUrlEncodedContentType,
         url: ApiService.baseUrl,
         data: paymentInetInputModel.toJson());
     CreatePaymentIntentModel paymentIntent =

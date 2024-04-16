@@ -12,11 +12,14 @@ class ApiService {
     required dynamic data,
     String? contentType,
   }) async {
-    Response<dynamic> response = await dio.post(url,
-        data: data,
-        options: Options(
-            contentType: contentType,
-            headers: {"Authorization": "Bearer $token"}));
+    Response<dynamic> response = await dio.post(
+      url,
+      data: data,
+      options: Options(
+        contentType: Headers.formUrlEncodedContentType,
+        headers: {"Authorization": "Bearer $token"},
+      ),
+    );
     return response;
   }
 }

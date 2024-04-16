@@ -4,7 +4,12 @@ import 'package:payment_gateway/features/payment_gateway/presentation/check_out/
 
 import 'core/utils/strip_keys.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   Stripe.publishableKey = StripeKeys.stripePublishableKey;
+  Stripe.merchantIdentifier = 'any string works';
+  await Stripe.instance.applySettings();
+
   runApp(const CheckOutApp());
 }
