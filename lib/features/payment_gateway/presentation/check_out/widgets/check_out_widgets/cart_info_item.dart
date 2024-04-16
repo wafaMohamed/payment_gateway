@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../../core/utils/styles.dart';
+import '../../../../../../core/utils/styles.dart';
 
 class OrderInfoItem extends StatelessWidget {
   const OrderInfoItem({super.key, required this.title, required this.value});

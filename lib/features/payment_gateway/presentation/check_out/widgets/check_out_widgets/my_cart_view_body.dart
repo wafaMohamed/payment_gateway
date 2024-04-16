@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:payment_gateway/features/payment_gateway/presentation/check_out/widgets/total_price.dart';
 
+import '../../view/payment_details_view.dart';
+import '../custom_button.dart';
 import 'cart_info_item.dart';
-import 'custom_button.dart';
 
 class MyCartViewBody extends StatelessWidget {
   const MyCartViewBody({super.key});
@@ -48,7 +49,11 @@ class MyCartViewBody extends StatelessWidget {
               height: 15,
             ),
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const PaymentDetailsView(),
+                ));
+              },
               title: 'Complete Payment',
             ),
             const SizedBox(
