@@ -38,4 +38,5 @@ abstract class Styles {
 class ColorsApp {
   static Color black = Colors.black;
   static Color green = Color(0xff34a853);
+  static Color grey = Color(0xffD9D9D9);
 }

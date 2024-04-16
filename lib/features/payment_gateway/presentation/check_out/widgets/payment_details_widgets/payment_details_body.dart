@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:payment_gateway/features/payment_gateway/presentation/check_out/widgets/custom_button.dart';
 import 'package:payment_gateway/features/payment_gateway/presentation/check_out/widgets/payment_details_widgets/payment_list_view.dart';
 
+import '../../view/thank_you_view.dart';
 import 'custom_credit_card.dart';
 
 class PaymentDetailsBody extends StatefulWidget {
@@ -19,41 +20,49 @@ class _PaymentDetailsBodyState extends State<PaymentDetailsBody> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: [
-      const SliverToBoxAdapter(
-        child: PaymentMethodsListView(),
-      ),
-      SliverToBoxAdapter(
-        child: CustomCreditCard(
-          autovalidateMode: autovalidateMode,
-          formKey: formKey,
+    return CustomScrollView(
+      slivers: [
+        const SliverToBoxAdapter(
+          child: PaymentMethodsListView(),
         ),
-      ),
-      SliverFillRemaining(
-        hasScrollBody: false,
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              bottom: 12,
-              left: 16,
-              right: 16,
-            ),
-            child: CustomButton(
-              onTap: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  log("payment");
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
-              },
-              title: 'Pay',
+        SliverToBoxAdapter(
+          child: CustomCreditCard(
+            autovalidateMode: autovalidateMode,
+            formKey: formKey,
+          ),
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                bottom: 12,
+                left: 16,
+                right: 16,
+              ),
+              child: CustomButton(
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    log("payment");
+                  } else {
+                    // in test only - do not do this // put the navigation on if scope
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const ThankYouView(),
+                      ),
+                    );
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+                title: 'Pay',
+              ),
             ),
           ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }
