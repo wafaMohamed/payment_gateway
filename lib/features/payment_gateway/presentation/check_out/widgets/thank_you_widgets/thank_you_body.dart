@@ -11,7 +11,7 @@ class ThankYouBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top: 25),
+        padding: const EdgeInsets.only(top: 10),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -19,27 +19,27 @@ class ThankYouBody extends StatelessWidget {
 
             Positioned(
               left: -2,
-              bottom: MediaQuery.of(context).size.height * .2,
+              bottom: MediaQuery.of(context).size.height * .185,
               child: const CircleAvatar(
                 backgroundColor: Colors.white,
               ),
             ),
             Positioned(
               right: -2,
-              bottom: MediaQuery.of(context).size.height * .2,
+              bottom: MediaQuery.of(context).size.height * .185,
               child: const CircleAvatar(
                 backgroundColor: Colors.white,
               ),
             ),
             // dash line
             Positioned(
-              bottom: MediaQuery.sizeOf(context).height * .2 + 20,
+              bottom: MediaQuery.sizeOf(context).height * .2 + 8,
               left: 35 + 8,
               right: 35 + 8,
               child: const CustomDashedLine(),
             ),
             const Positioned(
-                right: 0, left: 0, top: -20, child: CustomCheckIcon()),
+                right: 0, left: 0, top: -10, child: CustomCheckIcon()),
           ],
         ),
       ),

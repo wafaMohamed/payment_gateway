@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/utils/styles.dart';
 
-AppBar buildAppBar({required String title}) {
+AppBar buildAppBar({final String? title}) {
   return AppBar(
     leading: Center(
         child: Padding(
@@ -12,7 +12,7 @@ AppBar buildAppBar({required String title}) {
     )),
     centerTitle: true,
     title: Text(
-      title,
+      title ?? "",
       textAlign: TextAlign.center,
       style: Styles.textStyle25,
     ),
